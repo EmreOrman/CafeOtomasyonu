@@ -1,0 +1,79 @@
+====================================================================================================
+                        SİSTEMDE MEVCUT OLANLAR VE PROJE GENEL BAKIŞI
+====================================================================================================
+
+1. PROJENİN AMACI VE HİZMET ALANI
+----------------------------------------------------------------------------------------------------
+- Bu proje; yeme-içme ve kafe sektörüne yönelik geliştirilmiş, hem müşteri deneyimini hem de 
+  işletme yönetimini tek bir çatı altında birleştiren masaüstü tabanlı bir Kafe Otomasyonu ve 
+  Dijital Menü Sistemidir.
+- Temel amacı; müşterilere kafenin ürünlerini modern ve estetik bir vitrin üzerinden sunmak, 
+  kategori ve fiyat bazlı kolay arama imkanı sağlamak; işletme yöneticilerine ise ürün ve 
+  kullanıcı verilerini hızlı, güvenli ve hatasız bir şekilde yönetebilecekleri merkezi bir 
+  kontrol paneli kazandırmaktır.
+
+
+2. ARAYÜZ (UI) TASARIMI VE KULLANICI DENEYİMİ (UX)
+----------------------------------------------------------------------------------------------------
+- Renk Paleti ve Tema Bütünlüğü: Sistemin tamamında kafe konseptine uygun koyu espresso ve 
+  kavrulmuş kahve tonları (#1A1512, #221B17, #2E221C) ile sıcak sütlü kahve / altın (#CDAA7D, 
+  #DDAE76) vurgu renkleri kullanılarak göz yormayan, premium bir görsel kimlik oluşturulmuştur.
+- Modern Bileşenler (Guna.UI2): Standart Windows Forms kontrolleri yerine yuvarlatılmış köşeli 
+  (BorderRadius), gölgelendirmeli (ShadowDecoration) ve yarı saydam cam efekti (Glassmorphism) 
+  taşıyan modern panel, buton ve metin kutuları kullanılmıştır.
+- Dinamik Kart Yapısı (UserControl): Ürünler statik kutular yerine özel olarak tasarlanan 
+  "KahveAfisleri" kullanıcı kontrolü ile oluşturulmakta ve veritabanındaki kayıt sayısına göre 
+  "FlowLayoutPanel" içerisine dinamik olarak dizilmektedir.
+- Özelleştirilmiş Veri Tabloları (DataGridView): Yönetici ekranlarındaki tablolar; zebra 
+  çizgili satır yapısı, özel başlık renkleri, salt okunur (ReadOnly) koruma modu ve satır içi 
+  silme ikonu sütunu ile hem estetik hem de güvenli hale getirilmiştir.
+- Etkileşimli Detaylar: Üst menü (Navbar) bağlantılarında fare etkileşimi (Mouse Hover) renk 
+  geçişleri ve şifre alanlarında tek tıkla şifre göster/gizle (göz ikonu) özellikleri aktiftir.
+
+
+3. SİSTEMDE AKTİF OLARAK ÇALIŞAN MODÜLLER
+----------------------------------------------------------------------------------------------------
+A. Kimlik Doğrulama ve Hesap İşlemleri (Form1, HesapOlustur, SifremiUnuttum, KodDogrulamaFormu)
+   - Kullanıcı Girişi: E-posta ve şifre bilgileri SQL Server veritabanı ile doğrulanarak 
+     sisteme güvenli giriş sağlanmaktadır.
+   - Kayıt Olma ve Güçlü Şifre Politikası: Yeni kullanıcı kaydında boş alan kontrolünün yanı 
+     sıra Regex (Düzenli İfadeler) kullanılarak en az 8 karakter, 1 büyük harf, 1 küçük harf, 
+     1 rakam ve 1 özel karakter zorunluluğu uygulanmaktadır.
+   - Şifre Sıfırlama Altyapısı: Sistemde kayıtlı e-posta adresi doğrulanarak 4 haneli tek 
+     kullanımlık doğrulama kodu üretilmekte ve kod doğrulama ekranı üzerinden kontrol 
+     edilmektedir.
+
+B. Müşteri Arayüzü ve Dijital Vitrin (Anasayfa, KahveMenü, Hakkimizda, Iletisim)
+   - Anasayfa: Karşılama afişi (Hero Banner), üst navigasyon menüsü ve veritabanından çekilen 
+     kahve kartlarının dinamik olarak listelendiği vitrin alanı yer almaktadır.
+   - Kahve Menüsü ve Gelişmiş Filtreleme: Kullanıcılar kahve adına göre anlık arama (LIKE 
+     sorgusu) yapabilmekte; ürünleri "Tüm Kahveler", "Sıcak Kahveler" ve "Soğuk Kahveler" 
+     kategorilerine göre filtreleyip fiyata göre artan veya azalan şekilde sıralayabilmektedir.
+   - Kurumsal Sayfalar: Kafenin hikayesini ve yönetici profil kartlarını içeren "Hakkımızda" 
+     sayfası ile mesaj ve iletişim kanallarını barındıran "İletişim" sayfası tüm formlarla 
+     entegre şekilde çalışmaktadır.
+
+C. Yönetici Kontrol Paneli (YöneticiAnasayfa, KullaniciYönetim, KahveYönetimi)
+   - Yönetici Anasayfası: Yönetim modülleri arasında hızlı geçiş sağlayan sol kontrol menüsü 
+     ve kayıtlı kullanıcıların özet tablosu bulunmaktadır.
+   - Kullanıcı Yönetimi: Yöneticiler yeni kullanıcı ekleyebilir, mevcut kullanıcıların ad ve 
+     e-posta bilgilerini güncelleyebilir, tablo üzerindeki silme ikonu ile onaylı silme işlemi 
+     yapabilir, isme göre anlık arama ve kayıt tarihine göre sıralama gerçekleştirebilir.
+   - Kahve Yönetimi: Menüdeki kahvelerin adı, fiyatı, kategorisi ve görsel yolu (ResimYolu) 
+     veritabanı üzerinden eklenip düzenlenebilmektedir.
+
+
+4. TEKNİK MİMARİ VE GÜVENLİK STANDARTLARI
+----------------------------------------------------------------------------------------------------
+- Teknoloji Yığını: C# programlama dili, .NET Framework (Windows Forms) ve ilişkisel veritabanı 
+  yönetimi için Microsoft SQL Server (ADO.NET / System.Data.SqlClient) kullanılmıştır.
+- Veri Güvenliği (SQL Injection Koruması): Tüm veritabanı ekleme, silme, güncelleme ve 
+  listeleme sorguları parametreli yapılar (@parametre) kullanılarak yazılmıştır.
+- Veri Gizliliği ve Giriş Kontrolleri: Yönetici tablolarında kullanıcı şifreleri "CellFormatting" 
+  olayı ile yıldız (*) karakteriyle maskelenerek gizlenmekte, kullanıcı güncelleme sırasında 
+  şifre alanı gizli tutulmaktadır. İsim giriş alanlarında "KeyPress" kontrolü ile rakam ve özel 
+  karakter girişi engellenmektedir.
+- Hata Yönetimi ve Kod Düzeni: Tüm veritabanı işlemleri "try-catch-finally" blokları ile 
+  güvence altına alınarak bağlantı sızıntıları önlenmiş; tüm formlar okunabilirliği artıran 
+  "#region" blokları ve açıklayıcı yorum satırlarıyla standartlaştırılmıştır.
+====================================================================================================

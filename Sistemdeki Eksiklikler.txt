@@ -1,0 +1,60 @@
+====================================================================================================
+                        SİSTEMDEKİ EKSİKLİKLER VE GELECEK GÜNCELLEMELER
+====================================================================================================
+
+1. YÖNETİCİ - KULLANICI AYRIMI VE OTURUM YÖNETİMİ
+----------------------------------------------------------------------------------------------------
+- Kullanıcı ve yönetici girişi için ayrı bir form oluşturulmayacak; mevcut Giriş Formu (Form1) 
+  üzerinden rol bazlı yönlendirme yapılacak.
+- Veritabanındaki "Kullanicilar" tablosuna rol bilgisi (Admin / Kullanıcı) eklenecek.
+- Giriş yapan kişinin bilgilerine göre yönetici ise "YöneticiAnasayfa" formuna, standart kullanıcı 
+  ise kullanıcı "Anasayfa" formuna yönlendirilecek.
+
+
+2. ŞİFRE SIFIRLAMA VE DOĞRULAMA SÜRECİ (E-POSTA ENTEGRASYONU)
+----------------------------------------------------------------------------------------------------
+- E-Posta ile Doğrulama Kodu Gönderimi: Kullanıcı şifresini yenilemek için "SifremiUnuttum" 
+  formunda kayıtlı e-posta adresini girdiğinde, sistem tarafından üretilen doğrulama kodu 
+  MessageBox ile ekranda gösterilmek yerine, SMTP mail servisi aracılığıyla doğrudan kullanıcının 
+  gerçek e-posta adresine gönderilecek.
+- Kod Doğrulama ve Şifre Yenileme Formu: Kullanıcının mail adresine gelen doğrulama kodu 
+  "KodDogrulamaFormu" ekranında girilip onaylandıktan sonra, şu an sistemde bulunmayan 
+  "SifreYenilemeFormu" açılacak; kullanıcı bu form üzerinden yeni şifresini belirleyebilecek 
+  ve güncellenen şifre veritabanına kaydedilecek.
+
+
+3. KULLANICI ANASAYFASI (ÖNE ÇIKAN KAHVELER)
+----------------------------------------------------------------------------------------------------
+- Kullanıcı anasayfasında veritabanındaki tüm kahveler yerine, yalnızca yönetici tarafından 
+  belirlenen "Öne Çıkan Kahveler" listelenecek.
+- Sistemdeki tüm kahvelerin listelenmesi, aranması ve filtrelenmesi sadece "KahveMenü" formu 
+  üzerinden yapılacak.
+
+
+4. SEPET VE ALIŞVERİŞ (SİPARİŞ) MODÜLÜ
+----------------------------------------------------------------------------------------------------
+- Sepet Formu: Kullanıcının menüden seçtiği kahveleri, adet bilgilerini ve toplam tutarı 
+  görüntüleyip düzenleyebileceği sepet ekranı eklenecek.
+- Alışveriş Formu: Sepet ekranıyla doğrudan bağlantılı olarak kullanıcının siparişini onaylayıp 
+  satın alma işlemini tamamlayabileceği ve siparişi veritabanına kaydedecek ödeme/onay formu 
+  oluşturulacak.
+
+
+5. İLETİŞİM VE TALEP YÖNETİMİ
+----------------------------------------------------------------------------------------------------
+- Kullanıcı "İletişim" formu üzerinden yöneticiye talep veya şikayet gönderebilecek; oluşturduğu 
+  mevcut talepleri, içeriklerini ve tarihlerini listeleyip düzenleme ve silme işlemi yapabilecek.
+- Gönderilen taleplerin yönetici tarafından görüntülenip yönetilebilmesi için "TalepYönetimi" 
+  adlı yeni bir yönetici formu oluşturulacak.
+- Talep metni giriş alanına karakter sınırlaması getirilecek ve kullanıcı yazı yazdıkça kalan 
+  karakter limiti anlık olarak ekranda gösterilecek.
+- İletişim formunun sol bölümünde yer alan WhatsApp, Mail ve Instagram ikonlarına tıklandığında 
+  kafenin ilgili iletişim kanallarına ve sosyal medya hesaplarına doğrudan yönlendirme sağlanacak.
+
+
+6. YÖNETİCİ ANASAYFASI (CANLI İSTATİSTİKLER)
+----------------------------------------------------------------------------------------------------
+- Yönetici anasayfasında şu an sabit metin (Label) olarak yer alan istatistik kartları (Toplam 
+  Kullanıcı Sayısı, Kayıtlı Kahve Sayısı, Toplam Sipariş ve Günlük Gelir) veritabanından canlı 
+  olarak çekilecek şekilde güncellenecek.
+====================================================================================================
